@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import ReduxProvider from '@/store/provider'
 import './globals.css'
 
 export default function RootLayout({
@@ -9,11 +10,11 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body>
-				<Header />
+				<ReduxProvider>
+					<Header />
 
-				<main className='w-full p-5'>
-					<div className='container'>{children}</div>
-				</main>
+					<main className='w-full'>{children}</main>
+				</ReduxProvider>
 			</body>
 		</html>
 	)

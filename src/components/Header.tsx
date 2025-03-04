@@ -1,3 +1,5 @@
+'use client'
+import { useGetMovieListQuery } from '@/store/api/apiSlice'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -7,6 +9,9 @@ const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
 const Header: FC = () => {
+	const { data } = useGetMovieListQuery('')
+	console.log(data)
+
 	return (
 		<header className='py-5'>
 			<div className='container'>
