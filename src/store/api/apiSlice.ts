@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const API_KEY = process.env.NEXT_PUBLIC_API_TOKEN
-console.log('KEY', API_KEY)
 
 export const apiSlice = createApi({
 	reducerPath: 'api',
@@ -16,9 +15,27 @@ export const apiSlice = createApi({
 
 	endpoints: builder => ({
 		getMovieList: builder.query({
-			query: () => 'discover/movie',
+			query: (page = 1) => `discover/movie?page=${page}`,
+		}),
+		getTVShowsList: builder.query({
+			query: (page = 1) => `discover/tv?page=${page}`,
+		}),
+		getPopularMovies: builder.query({
+			query: (page = 1) => `movie/popular?page=${page}`,
+		}),
+		getTopRated: builder.query({
+			query: ({ type = 'movie', page = 1 }) => `${type}/top_rated?page=${page}`,
+		}),
+		getPeoplePopular: builder.query({
+			query: (page = 1) => `person/popular?page=${page}`,
 		}),
 	}),
 })
 
-export const { useGetMovieListQuery } = apiSlice
+export const {
+	useGetMovieListQuery,
+	useGetTVShowsListQuery,
+	useGetPopularMoviesQuery,
+	useGetTopRatedQuery,
+	useGetPeoplePopularQuery,
+} = apiSlice

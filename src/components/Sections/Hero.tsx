@@ -1,28 +1,33 @@
 'use client'
 
 import { useGetMovieListQuery } from '@/store/api/apiSlice'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import HeroSlider from '../Sliders/HeroSlider'
 
 const Hero = () => {
-	const { data } = useGetMovieListQuery('')
+	const { data, isLoading } = useGetMovieListQuery(1)
 
-	if (!data) {
-		return <h1>loading...</h1>
+	const [movies, setMovies] = useState([])
+
+	useEffect(() => {
+		if (data?.results) {
+			setMovies(data.results)
+		}
+	}, [data])
+
+	if (isLoading) {
+		return (
+			<div className='flex justify-center items-center h-screen space-x-2'>
+				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse'></div>
+				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse200'></div>
+				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse400'></div>
+			</div>
+		)
 	}
 
 	return (
 		<div>
-			{data &&
-				data?.results.map((item: any) => (
-					<div key={item.id} className='relative w-full h-[500px] md:h-[700px]'>
-						<Image
-							src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-							alt=''
-							fill
-							className='object-cover'
-						/>
-					</div>
-				))}
+			<HeroSlider items={movies || []} />
 		</div>
 	)
 }

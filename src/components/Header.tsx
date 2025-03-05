@@ -13,7 +13,7 @@ const Header: FC = () => {
 	console.log(data)
 
 	return (
-		<header className='py-5'>
+		<header className='py-5 sticky top-0 z-50 bg-[#0a0a0a]'>
 			<div className='container'>
 				<div className='flex items-center justify-between'>
 					<Link
