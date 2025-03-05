@@ -28,7 +28,7 @@ const Header: FC = () => {
 								<Link href={'/'}>Home</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
-								<Link href={'/'}>TV Shows</Link>
+								<Link href={'/tv'}>TV Shows</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
 								<Link href={'/'}>Movies</Link>

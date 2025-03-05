@@ -1,10 +1,10 @@
-import Hero from '@/components/Sections/Hero'
-import MovieList from '@/components/Sections/Movies/MovieList'
-import PopularMovies from '@/components/Sections/Movies/PopularMovies'
-import TopRatedMovies from '@/components/Sections/Movies/TopRatedMovies'
-import PopularPeopleList from '@/components/Sections/People/PopularPeopleList'
-import TopRatedTV from '@/components/Sections/TVShows/TopRatedTV'
-import TVList from '@/components/Sections/TVShows/TVList'
+import Hero from '@/components/Sections/Home/Hero'
+import MovieList from '@/components/Sections/Home/Movies/MovieList'
+import PopularMovies from '@/components/Sections/Home/Movies/PopularMovies'
+import TopRatedMovies from '@/components/Sections/Home/Movies/TopRatedMovies'
+import PopularPeopleList from '@/components/Sections/Home/People/PopularPeopleList'
+import TopRatedTV from '@/components/Sections/Home/TVShows/TopRatedTV'
+import TVList from '@/components/Sections/Home/TVShows/TVList'
 
 export default function Home() {
 	return (

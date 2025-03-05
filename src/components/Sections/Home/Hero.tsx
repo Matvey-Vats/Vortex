@@ -2,7 +2,7 @@
 
 import { useGetMovieListQuery } from '@/store/api/apiSlice'
 import { useEffect, useState } from 'react'
-import HeroSlider from '../Sliders/HeroSlider'
+import HeroSlider from '../../Sliders/HeroSlider'
 
 const Hero = () => {
 	const { data, isLoading } = useGetMovieListQuery(1)

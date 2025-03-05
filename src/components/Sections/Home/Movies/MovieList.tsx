@@ -1,52 +1,53 @@
 'use client'
-import { useGetTVShowsListQuery } from '@/store/api/apiSlice'
+
+import { IMovie } from '@/components/Sliders/HeroSlider'
+import SliderTemplate from '@/components/Sliders/SliderTemplate'
+import { useGetMovieListQuery } from '@/store/api/apiSlice'
+import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, useEffect, useState } from 'react'
-import SliderTemplate from '../../Sliders/SliderTemplate'
-import DataStatus from '../DataStatus'
+import DataStatus from '../../DataStatus'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
-const TVList: FC = () => {
+const MovieList: FC = () => {
 	const {
-		data: shows,
+		data: movies,
 		isLoading,
 		isError,
 		isSuccess,
-	} = useGetTVShowsListQuery(1, {
+	} = useGetMovieListQuery(2, {
 		selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
-			data: data?.results || [],
+			data: data?.results || undefined,
 			isLoading,
 			isError,
 			isSuccess,
 		}),
 	})
-	const [series, setSeries] = useState([])
+	const [moviess, setMovies] = useState([])
 
 	useEffect(() => {
-		if (shows) {
-			setSeries(shows)
+		if (movies) {
+			setMovies(movies)
 		}
-	}, [shows])
+	}, [movies])
 
 	return (
-		<section>
+		<section className='my-10'>
 			<div className='container'>
 				<h2 className={`${orbitron.className} font-bold text-4xl mb-5`}>
-					TV Shows
+					Movies
 				</h2>
 				<DataStatus isLoading={isLoading} isError={isError} />
 				{isSuccess && (
 					<div>
 						<SliderTemplate
-							items={series || []}
-							getImage={item =>
-								`https://image.tmdb.org/t/p/original${item.poster_path}`
-							}
-							renderContent={(item: any) => (
+							items={moviess || []}
+							getImage={item => getImageUrl(item.poster_path)}
+							renderContent={(item: IMovie) => (
 								<div>
 									<div className='p-2 rounded-md'>
-										<h3 className='text-2xl font-semibold'>{item.name}</h3>
+										<h3 className='text-2xl font-semibold'>{item.title}</h3>
 										<p className='text-md'>⭐ {item.vote_average.toFixed(1)}</p>
 									</div>
 								</div>
@@ -59,4 +60,4 @@ const TVList: FC = () => {
 	)
 }
 
-export default TVList
+export default MovieList
