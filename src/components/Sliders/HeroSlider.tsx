@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
@@ -50,9 +51,12 @@ const HeroSlider = ({ items }: Props) => {
 							<p className='text-xl mt-2'>
 								Rating: {item.vote_average.toFixed(1)}
 							</p>
-							<button className='mt-4 px-6 py-2 bg-[#FF3B3B] cursor-pointer text-white font-bold rounded hover:bg-[#ff8e8e] transition duration-600'>
+							<Link
+								href={`/movies/${item.id}`}
+								className='mt-4 inline-block px-6 py-2 bg-[#FF3B3B] cursor-pointer text-white font-bold rounded hover:bg-[#ff8e8e] transition duration-600'
+							>
 								Watch Now
-							</button>
+							</Link>
 						</div>
 					</div>
 				))}

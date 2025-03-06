@@ -43,6 +43,7 @@ const MovieList: FC = () => {
 					<div>
 						<SliderTemplate
 							items={moviess || []}
+							type='movie'
 							getImage={item => getImageUrl(item.poster_path)}
 							renderContent={(item: IMovie) => (
 								<div>

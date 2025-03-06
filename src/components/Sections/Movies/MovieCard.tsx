@@ -12,7 +12,7 @@ type Props = {
 
 const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 	return (
-		<Link href={'/'} className='px-2 cursor-pointer'>
+		<Link href={`/movies/${id}`} className='px-2 cursor-pointer'>
 			<div className='relative w-full h-[700px] group'>
 				<Image
 					src={getImageUrl(poster_path)}

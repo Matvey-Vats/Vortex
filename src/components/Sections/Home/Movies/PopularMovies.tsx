@@ -44,10 +44,11 @@ const PopularMovies: FC = () => {
 				{isSuccess && (
 					<div>
 						<SliderTemplate
+							type='movie'
 							items={movies || []}
 							getImage={(item: IMovie) => getImageUrl(item.poster_path)}
 							renderContent={item => (
-								<div>
+								<div key={item.id}>
 									<div className='p-2 rounded-md'>
 										<h3 className='text-2xl font-semibold'>{item.title}</h3>
 										<p className='text-md'>⭐ {item.vote_average.toFixed(1)}</p>

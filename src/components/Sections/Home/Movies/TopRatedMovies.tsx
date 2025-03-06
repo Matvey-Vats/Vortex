@@ -43,6 +43,7 @@ const TopRatedMovies: FC = () => {
 				{isSuccess && (
 					<div>
 						<SliderTemplate
+							type='movie'
 							items={movies || []}
 							getImage={(item: IMovie) => getImageUrl(item.poster_path)}
 							renderContent={item => (

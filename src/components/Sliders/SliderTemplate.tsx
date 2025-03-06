@@ -9,9 +9,15 @@ type Props<T> = {
 	items: T[]
 	getImage: (item: T) => string
 	renderContent?: (item: T) => React.ReactNode
+	type?: string
 }
 
-const SliderTemplate = <T,>({ items, getImage, renderContent }: Props<T>) => {
+const SliderTemplate = <T,>({
+	items,
+	getImage,
+	renderContent,
+	type,
+}: Props<T>) => {
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -53,7 +59,13 @@ const SliderTemplate = <T,>({ items, getImage, renderContent }: Props<T>) => {
 			<Slider {...settings}>
 				{items.map(item => (
 					<Link
-						href={'/'}
+						href={
+							type === 'movie'
+								? `/movies/${(item as any).id}/`
+								: type === 'tv'
+								? `tv/${(item as any).id}/`
+								: ''
+						}
 						key={(item as any).id}
 						className='px-2 cursor-pointer'
 					>
