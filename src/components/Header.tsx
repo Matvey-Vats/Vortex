@@ -33,9 +33,7 @@ const Header: FC = () => {
 							<li className='transition-all duration-300 hover:opacity-70'>
 								<Link href={'/movies'}>Movies</Link>
 							</li>
-							<li className='transition-all duration-300 hover:opacity-70'>
-								<Link href={'/'}>New & Popular</Link>
-							</li>
+
 							<li className='transition-all duration-300 hover:opacity-70'>
 								<Link href={'/'}>My List</Link>
 							</li>
