@@ -1,7 +1,7 @@
 'use client'
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import { useGetPopularMoviesQuery } from '@/store/api/apiSlice'
+import { useGetMoviesByPropertyQuery } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, useEffect, useState } from 'react'
@@ -15,14 +15,17 @@ const PopularMovies: FC = () => {
 		isLoading,
 		isError,
 		isSuccess,
-	} = useGetPopularMoviesQuery(1, {
-		selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
-			data: data?.results || [],
-			isLoading,
-			isError,
-			isSuccess,
-		}),
-	})
+	} = useGetMoviesByPropertyQuery(
+		{ property: 'popular', page: 1 },
+		{
+			selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
+				data: data?.results || [],
+				isLoading,
+				isError,
+				isSuccess,
+			}),
+		}
+	)
 	const [movies, setMovies] = useState([])
 
 	useEffect(() => {

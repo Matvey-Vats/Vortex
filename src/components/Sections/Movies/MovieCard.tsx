@@ -5,12 +5,12 @@ import { FC } from 'react'
 
 type Props = {
 	id: number
-	name: string
+	title: string
 	vote_average: number
 	poster_path: string
 }
 
-const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
+const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 	return (
 		<Link href={'/'} className='px-2 cursor-pointer'>
 			<div className='relative w-full h-[700px] group'>
@@ -28,7 +28,7 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 				<div className='absolute bottom-4 left-4 w-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
 					<div>
 						<div className='p-2 rounded-md'>
-							<h3 className='text-2xl font-semibold'>{name}</h3>
+							<h3 className='text-2xl font-semibold'>{title}</h3>
 							<p className='text-md'>⭐ {vote_average.toFixed(1)}</p>
 						</div>
 					</div>
@@ -38,4 +38,4 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 	)
 }
 
-export default TVCard
+export default MovieCard

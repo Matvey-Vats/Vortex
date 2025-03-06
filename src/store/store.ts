@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from './api/apiSlice'
+import movies from './slices/moviesSlice'
 import tv from './slices/tvSlice'
 
 export const store = configureStore({
 	reducer: {
 		tv,
+		movies,
 		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
 

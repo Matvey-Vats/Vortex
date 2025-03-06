@@ -31,7 +31,7 @@ const Header: FC = () => {
 								<Link href={'/tv'}>TV Shows</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
-								<Link href={'/'}>Movies</Link>
+								<Link href={'/movies'}>Movies</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
 								<Link href={'/'}>New & Popular</Link>

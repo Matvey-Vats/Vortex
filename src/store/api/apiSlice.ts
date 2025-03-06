@@ -20,8 +20,9 @@ export const apiSlice = createApi({
 		getTVShowsList: builder.query({
 			query: (page = 1) => `discover/tv?page=${page}`,
 		}),
-		getPopularMovies: builder.query({
-			query: (page = 1) => `movie/popular?page=${page}`,
+		getMoviesByProperty: builder.query({
+			query: ({ property = 'popular', page = 1 }) =>
+				`movie/${property}?page=${page}`,
 		}),
 		getTopRated: builder.query({
 			query: ({ type = 'movie', page = 1 }) => `${type}/top_rated?page=${page}`,
@@ -38,7 +39,7 @@ export const apiSlice = createApi({
 export const {
 	useGetMovieListQuery,
 	useGetTVShowsListQuery,
-	useGetPopularMoviesQuery,
+	useGetMoviesByPropertyQuery,
 	useGetTopRatedQuery,
 	useGetShowsByPropertyQuery,
 	useGetPeoplePopularQuery,
