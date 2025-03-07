@@ -40,6 +40,7 @@ const TVList: FC = () => {
 				{isSuccess && (
 					<div>
 						<SliderTemplate
+							type='tv'
 							items={series || []}
 							getImage={item =>
 								`https://image.tmdb.org/t/p/original${item.poster_path}`

@@ -16,7 +16,7 @@ const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 			<div className='relative w-full h-[700px] group'>
 				<Image
 					src={getImageUrl(poster_path)}
-					alt='Movie Image'
+					alt={`${title} poster`}
 					layout='fill'
 					objectFit='cover'
 					className='rounded-lg'

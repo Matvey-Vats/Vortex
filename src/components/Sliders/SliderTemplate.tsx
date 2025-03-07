@@ -72,7 +72,7 @@ const SliderTemplate = <T,>({
 						<div className='relative w-full h-[700px] group'>
 							<Image
 								src={getImage(item)}
-								alt='Movie Image'
+								alt={(item as any).title || (item as any).name}
 								layout='fill'
 								objectFit='cover'
 								className='rounded-lg'

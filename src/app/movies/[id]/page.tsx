@@ -81,9 +81,12 @@ const MovieDetails = () => {
 					<div className='container'>
 						<MovieDetailsContent {...data} />
 
-						<div className='mb-20'>
-							<VideoPlayer videoKey={video?.key} />
-						</div>
+						{video && (
+							<div className='mb-20'>
+								<VideoPlayer videoKey={video?.key} />
+							</div>
+						)}
+
 						{similar?.results && (
 							<div>
 								<h3 className='text-4xl font-bold mb-5'>Similar</h3>

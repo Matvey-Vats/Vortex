@@ -50,6 +50,7 @@ const TopRatedTV: FC = () => {
 				{isSuccess && (
 					<div>
 						<SliderTemplate
+							type='tv'
 							items={shows || []}
 							getImage={(item: ITVShow) => getImageUrl(item.poster_path)}
 							renderContent={item => (

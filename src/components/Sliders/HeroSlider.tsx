@@ -43,7 +43,9 @@ const HeroSlider = ({ items }: Props) => {
 							src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
 							alt={item.title}
 							fill
+							objectFit='cover'
 							className='w-full h-full object-cover'
+							priority
 						/>
 						<div className='absolute inset-0 bg-black opacity-50' />
 						<div className='absolute bottom-30 left-30 text-white'>

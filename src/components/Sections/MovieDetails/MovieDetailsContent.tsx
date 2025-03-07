@@ -27,10 +27,12 @@ const MovieDetailsContent: FC<Props> = ({
 		<div className='mb-20 flex items-start justify-between'>
 			<Image
 				src={getImageUrl(poster_path)}
-				alt=''
+				alt={title}
 				width={500}
 				height={700}
+				objectFit='cover'
 				className='rounded-md'
+				priority
 			/>
 			<div className='w-[600px]'>
 				<div className='flex justify-between items-center mb-5'>

@@ -12,11 +12,11 @@ type Props = {
 
 const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 	return (
-		<Link href={'/'} className='px-2 cursor-pointer'>
+		<Link href={`/tv/${id}`} className='px-2 cursor-pointer'>
 			<div className='relative w-full h-[700px] group'>
 				<Image
 					src={getImageUrl(poster_path)}
-					alt='Movie Image'
+					alt={`${name} poster`}
 					layout='fill'
 					objectFit='cover'
 					className='rounded-lg'
