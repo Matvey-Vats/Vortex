@@ -44,7 +44,7 @@ const PopularMovies: FC = () => {
 				{isSuccess && (
 					<div>
 						<SliderTemplate
-							type='movie'
+							type='movies'
 							items={movies || []}
 							getImage={(item: IMovie) => getImageUrl(item.poster_path)}
 							renderContent={item => (

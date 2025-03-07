@@ -40,6 +40,7 @@ const PopularPeopleList: FC = () => {
 					<div>
 						<SliderTemplate
 							items={people || []}
+							type='people'
 							getImage={(item: IPeople) => getImageUrl(item.profile_path)}
 							renderContent={item => (
 								<div>

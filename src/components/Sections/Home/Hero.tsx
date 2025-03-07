@@ -1,5 +1,6 @@
 'use client'
 
+import Spinner from '@/components/Spinner'
 import { useGetMovieListQuery } from '@/store/api/apiSlice'
 import { useEffect, useState } from 'react'
 import HeroSlider from '../../Sliders/HeroSlider'
@@ -16,13 +17,7 @@ const Hero = () => {
 	}, [data])
 
 	if (isLoading) {
-		return (
-			<div className='flex justify-center items-center h-screen space-x-2'>
-				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse'></div>
-				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse200'></div>
-				<div className='w-2 h-8 bg-[#FF3B3B] animate-pulse400'></div>
-			</div>
-		)
+		return <Spinner />
 	}
 
 	return (

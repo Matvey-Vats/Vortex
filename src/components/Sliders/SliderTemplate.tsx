@@ -59,13 +59,7 @@ const SliderTemplate = <T,>({
 			<Slider {...settings}>
 				{items.map(item => (
 					<Link
-						href={
-							type === 'movie'
-								? `/movies/${(item as any).id}/`
-								: type === 'tv'
-								? `tv/${(item as any).id}/`
-								: ''
-						}
+						href={type ? `${type}/${(item as any).id}` : '/'}
 						key={(item as any).id}
 						className='px-2 cursor-pointer'
 					>

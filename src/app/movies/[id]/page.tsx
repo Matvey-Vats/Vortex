@@ -95,7 +95,7 @@ const MovieDetails = () => {
 									isError={isSimilarError}
 								/>
 								<SliderTemplate
-									type='movie'
+									type='movies'
 									items={similar?.results}
 									getImage={(item: IMovie) => getImageUrl(item.poster_path)}
 									renderContent={item => (
