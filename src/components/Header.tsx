@@ -1,13 +1,18 @@
 'use client'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
-import { FC } from 'react'
-import { BiSearch } from 'react-icons/bi'
+import { FC, useState } from 'react'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
 const Header: FC = () => {
+	const [isOpen, setIsOpen] = useState(false)
+
+	const closeModal = () => {
+		setIsOpen(false)
+	}
+
 	return (
 		<header className='py-5 sticky top-0 z-50 bg-[#0a0a0a]'>
 			<div className='container'>
@@ -34,9 +39,7 @@ const Header: FC = () => {
 								<Link href={'/'}>My List</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
-								<Link href={'/'}>
-									<BiSearch size={20} />
-								</Link>
+								<Link href={'/search'}>Search</Link>
 							</li>
 						</ul>
 						<ul className='flex items-center gap-x-5'>

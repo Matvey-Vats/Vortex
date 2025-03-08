@@ -42,7 +42,7 @@ const MovieDetailsContent: FC<Props> = ({
 				<p className=''>{overview}</p>
 				<p className='mt-5 font-bold'>Release: {release_date}</p>
 				{production_countries && (
-					<p className='font-bold'>Country: {production_countries[0].name}</p>
+					<p className='font-bold'>Country: {production_countries[0]?.name}</p>
 				)}
 
 				{genres.length > 0 && (

@@ -1,21 +1,35 @@
+'use client'
 import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 
-type Props = {
+export interface IPeople {
 	id: number
+	gender: number
 	name: string
-	vote_average: number
-	poster_path: string
+	profile_path: string
+	media_type: string
 }
 
-const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
+type Props = {
+	id: number
+	profile_path: string
+	name: string
+}
+
+const PersonCard: FC<Props> = ({ id, profile_path, name }) => {
+	console.log('RENDERING PERSON CARD')
+
+	const imageUrl = getImageUrl(profile_path)
+
+	if (!imageUrl) return <div>Image not available</div>
+
 	return (
-		<Link href={`/tv/${id}`} className='px-2 cursor-pointer'>
-			<div className='relative w-full h-[700px] group'>
+		<Link href={`/people/${id}`} className='px-2 cursor-pointer'>
+			<div className='relative w-full h-[500px] group'>
 				<Image
-					src={getImageUrl(poster_path)}
+					src={imageUrl}
 					alt={`${name} poster`}
 					layout='fill'
 					objectFit='cover'
@@ -29,7 +43,6 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 					<div>
 						<div className='p-2 rounded-md'>
 							<h3 className='text-2xl font-semibold'>{name}</h3>
-							<p className='text-md'>⭐ {vote_average?.toFixed(1)}</p>
 						</div>
 					</div>
 				</div>
@@ -38,4 +51,4 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 	)
 }
 
-export default TVCard
+export default PersonCard

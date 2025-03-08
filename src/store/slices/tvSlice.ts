@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-enum ListType {
-	POPULAR = 'popular',
-	TOP = 'top_rated',
-}
-
 export interface IValue {
 	id: number
 	value: string

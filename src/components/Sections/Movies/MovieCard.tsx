@@ -29,7 +29,7 @@ const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 					<div>
 						<div className='p-2 rounded-md'>
 							<h3 className='text-2xl font-semibold'>{title}</h3>
-							<p className='text-md'>⭐ {vote_average.toFixed(1)}</p>
+							<p className='text-md'>⭐ {vote_average?.toFixed(1)}</p>
 						</div>
 					</div>
 				</div>

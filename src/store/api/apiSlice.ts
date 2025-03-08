@@ -24,6 +24,10 @@ export const apiSlice = createApi({
 			query: ({ property = 'popular', page = 1 }) =>
 				`movie/${property}?page=${page}`,
 		}),
+		getByTypeAndProperty: builder.query({
+			query: ({ type = 'movie', property = 'popular', page = 1 }) =>
+				`${type}/${property}?page=${page}`,
+		}),
 		getTopRated: builder.query({
 			query: ({ type = 'movie', page = 1 }) => `${type}/top_rated?page=${page}`,
 		}),
@@ -57,4 +61,6 @@ export const {
 
 	useGetVideosByIdQuery,
 	useGetSimilarByIdQuery,
+
+	useGetByTypeAndPropertyQuery,
 } = apiSlice
