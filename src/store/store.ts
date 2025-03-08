@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from './api/apiSlice'
+import auth from './slices/authSlice'
 import genres from './slices/genresSlice'
 import movies from './slices/moviesSlice'
 import search from './slices/searchSlice'
@@ -11,6 +12,7 @@ export const store = configureStore({
 		movies,
 		genres,
 		search,
+		auth,
 		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
 

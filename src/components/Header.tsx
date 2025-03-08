@@ -1,17 +1,18 @@
 'use client'
+import { logoutUser } from '@/store/slices/authSlice'
+import { AppDispatch, RootState } from '@/store/store'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import { BiLogOut } from 'react-icons/bi'
+import { useDispatch, useSelector } from 'react-redux'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
 const Header: FC = () => {
-	const [isOpen, setIsOpen] = useState(false)
-
-	const closeModal = () => {
-		setIsOpen(false)
-	}
+	const dispatch = useDispatch<AppDispatch>()
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
 	return (
 		<header className='py-5 sticky top-0 z-50 bg-[#0a0a0a]'>
@@ -42,14 +43,23 @@ const Header: FC = () => {
 								<Link href={'/search'}>Search</Link>
 							</li>
 						</ul>
-						<ul className='flex items-center gap-x-5'>
-							<li className='bg-[#FF3B3B] border-1 border-transparent font-bold px-5 py-2 rounded-xl transition-all duration-700 hover:border-[#FF3B3B] hover:bg-transparent'>
-								<Link href={'/'}>Log-in</Link>
-							</li>
-							<li>
-								<Link href={'/'}>Sign-up</Link>
-							</li>
-						</ul>
+						{!isAuthenticated ? (
+							<ul className='flex items-center gap-x-5'>
+								<li className='bg-[#FF3B3B] border-1 border-transparent font-bold px-5 py-2 rounded-xl transition-all duration-700 hover:border-[#FF3B3B] hover:bg-transparent'>
+									<Link href={'/auth/login'}>Log-in</Link>
+								</li>
+								<li>
+									<Link href={'/auth/register'}>Sign-up</Link>
+								</li>
+							</ul>
+						) : (
+							<button
+								onClick={() => dispatch(logoutUser())}
+								className='cursor-pointer'
+							>
+								<BiLogOut size={30} />
+							</button>
+						)}
 					</nav>
 				</div>
 			</div>
