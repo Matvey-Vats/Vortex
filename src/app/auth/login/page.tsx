@@ -18,7 +18,7 @@ type FieldsTypes = {
 }
 
 const Login = () => {
-	const { status, isAuthenticated } = useSelector(
+	const { status, isAuthenticated, error } = useSelector(
 		(state: RootState) => state.auth
 	)
 	const dispatch = useDispatch<AppDispatch>()
@@ -59,6 +59,14 @@ const Login = () => {
 							Login
 						</h2>
 						<div className='w-full'>
+							<p
+								className={`min-h-[50px] py-2 mt-2 text-red-600 border-1 border-red-400 text-center text-xl transition-all duration-700 ${
+									error ? 'opacity-100 h-auto' : 'opacity-0 h-0'
+								}`}
+							>
+								{error && 'Incorrect email or password'}
+							</p>
+
 							<form
 								onSubmit={handleSubmit(onSubmit)}
 								action='post'

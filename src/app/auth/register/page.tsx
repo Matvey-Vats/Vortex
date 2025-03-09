@@ -2,12 +2,12 @@
 
 import GoogleLogin from '@/components/GoogleLogin'
 import { loginWithGoogle, registerUser } from '@/store/slices/authSlice'
-import { AppDispatch } from '@/store/store'
+import { AppDispatch, RootState } from '@/store/store'
 import { Orbitron } from 'next/font/google'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
@@ -18,6 +18,7 @@ type FieldsTypes = {
 
 const SignUp = () => {
 	const dispatch = useDispatch<AppDispatch>()
+	const error = useSelector((state: RootState) => state.auth.error)
 	const router = useRouter()
 
 	const {
@@ -50,6 +51,13 @@ const SignUp = () => {
 							Sign-up
 						</h2>
 						<div className='w-full'>
+							<p
+								className={`min-h-[50px] py-2 mt-2 text-red-600 border-1 border-red-400 text-center text-xl transition-all duration-700 ${
+									error ? 'opacity-100 h-auto' : 'opacity-0 h-0'
+								}`}
+							>
+								{error && 'Incorrect email or password'}
+							</p>
 							<form
 								onSubmit={handleSubmit(onSubmit)}
 								action='post'
