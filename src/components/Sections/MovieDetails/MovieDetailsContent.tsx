@@ -2,9 +2,11 @@ import Image from 'next/image'
 import { FC } from 'react'
 
 import { ICountry, IGenre } from '@/app/movies/[id]/page'
+import LikeButton from '@/components/LikeButton'
 import getImageUrl from '@/utils/getImageUrl'
 
 type Props = {
+	id: number
 	title: string
 	poster_path: string
 	runtime: number
@@ -15,6 +17,7 @@ type Props = {
 }
 
 const MovieDetailsContent: FC<Props> = ({
+	id,
 	title,
 	poster_path,
 	runtime,
@@ -45,16 +48,19 @@ const MovieDetailsContent: FC<Props> = ({
 					<p className='font-bold'>Country: {production_countries[0]?.name}</p>
 				)}
 
-				{genres.length > 0 && (
-					<>
-						<h4 className='mt-10 text-2xl'>Genres</h4>
-						<ul>
-							{genres.map((genre: IGenre) => (
-								<li key={genre.id}>{genre.name}</li>
-							))}
-						</ul>
-					</>
-				)}
+				<div className='flex items-end justify-between'>
+					{genres.length > 0 && (
+						<div>
+							<h4 className='mt-10 text-2xl'>Genres</h4>
+							<ul>
+								{genres.map((genre: IGenre) => (
+									<li key={genre.id}>{genre.name}</li>
+								))}
+							</ul>
+						</div>
+					)}
+					<LikeButton id={String(id)} type='movie' />
+				</div>
 			</div>
 		</div>
 	)

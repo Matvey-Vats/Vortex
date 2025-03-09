@@ -22,7 +22,7 @@ export const loginWithGoogle = createAsyncThunk(
 				throw new Error(`Failed to get user's email`)
 			}
 
-			localStorage.setItem('user', userEmail)
+			localStorage.setItem('user', JSON.stringify(userEmail))
 
 			return userEmail
 		} catch (error: any) {

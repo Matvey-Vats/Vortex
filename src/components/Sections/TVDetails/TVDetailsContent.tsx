@@ -1,4 +1,5 @@
 import { ICountry, IGenre } from '@/app/movies/[id]/page'
+import LikeButton from '@/components/LikeButton'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron, Roboto } from 'next/font/google'
 import Image from 'next/image'
@@ -29,6 +30,7 @@ interface ISeason {
 }
 
 type Props = {
+	id: number
 	name: string
 	poster_path: string
 	runtime: number
@@ -43,6 +45,7 @@ type Props = {
 }
 
 const TVDetailsContent: FC<Props> = ({
+	id,
 	name,
 	poster_path,
 	release_date,
@@ -82,16 +85,19 @@ const TVDetailsContent: FC<Props> = ({
 						<p className='font-bold'>Country: {production_countries[0].name}</p>
 					)}
 
-					{genres.length > 0 && (
-						<>
-							<h4 className='mt-10 text-2xl'>Genres</h4>
-							<ul>
-								{genres.map((genre: IGenre) => (
-									<li key={genre.id}>{genre.name}</li>
-								))}
-							</ul>
-						</>
-					)}
+					<div className='flex items-end justify-between'>
+						{genres.length > 0 && (
+							<div>
+								<h4 className='mt-10 text-2xl'>Genres</h4>
+								<ul>
+									{genres.map((genre: IGenre) => (
+										<li key={genre.id}>{genre.name}</li>
+									))}
+								</ul>
+							</div>
+						)}
+						<LikeButton id={String(id)} type={'tvShow'} />
+					</div>
 				</div>
 			</div>
 			<div className={`mb-20 ${roboto.className}`}>

@@ -1,9 +1,10 @@
 'use client'
-import { logoutUser } from '@/store/slices/authSlice'
+import { auth } from '@/firebase'
+import { logoutUser, setUser } from '@/store/slices/authSlice'
 import { AppDispatch, RootState } from '@/store/store'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { BiLogOut } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,6 +14,16 @@ const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 const Header: FC = () => {
 	const dispatch = useDispatch<AppDispatch>()
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth)
+	const user = auth.currentUser
+
+	useEffect(() => {
+		const savedUser = localStorage.getItem('user')
+
+		if (savedUser) {
+			const user = JSON.parse(savedUser)
+			dispatch(setUser(user))
+		}
+	}, [dispatch])
 
 	return (
 		<header className='py-5 sticky top-0 z-50 bg-[#0a0a0a]'>

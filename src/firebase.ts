@@ -6,6 +6,7 @@ import {
 	signInWithPopup,
 	UserCredential,
 } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,17 +20,11 @@ const firebaseConfig = {
 	appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
-// console.log('1', process.env.NEXT_FIREBASE_API_KEY)
-// console.log('2', process.env.NEXT_FIREBASE_AUTH_DOMAIN)
-// console.log('3', process.env.NEXT_FIREBASE_PROJECT_ID)
-// console.log('4', process.env.NEXT_STORAGE_BUCKET)
-// console.log('5', process.env.NEXT_MESSAGING_SENDER_ID)
-// console.log('6', process.env.NEXT_APP_ID)
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
 export const auth = getAuth(app)
+export const db = getFirestore(app)
 
 const provider = new GoogleAuthProvider()
 
