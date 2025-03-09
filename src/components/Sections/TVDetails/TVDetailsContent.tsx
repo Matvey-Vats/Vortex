@@ -4,6 +4,7 @@ import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron, Roboto } from 'next/font/google'
 import Image from 'next/image'
 import { FC } from 'react'
+import { ITVShow } from '../Home/TVShows/TopRatedTV'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
@@ -42,6 +43,7 @@ type Props = {
 	last_episode_to_air: IEpisode
 	next_episode_to_air: IEpisode
 	seasons: ISeason[]
+	vote_average: number
 }
 
 const TVDetailsContent: FC<Props> = ({
@@ -56,6 +58,7 @@ const TVDetailsContent: FC<Props> = ({
 	last_episode_to_air,
 	next_episode_to_air,
 	seasons,
+	vote_average,
 }) => {
 	return (
 		<>
@@ -96,7 +99,10 @@ const TVDetailsContent: FC<Props> = ({
 								</ul>
 							</div>
 						)}
-						<LikeButton id={String(id)} type={'tvShow'} />
+						<LikeButton
+							item={{ id, name, poster_path, vote_average } as ITVShow}
+							type={'tvShow'}
+						/>
 					</div>
 				</div>
 			</div>

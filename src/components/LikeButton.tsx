@@ -9,13 +9,15 @@ import { auth, db } from '@/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
+import { ITVShow } from './Sections/Home/TVShows/TopRatedTV'
+import { IMovie } from './Sliders/HeroSlider'
 
 type LikeButtonProps = {
-	id: string
+	item: IMovie | ITVShow
 	type: 'movie' | 'tvShow'
 }
 
-const LikeButton = ({ id, type }: LikeButtonProps) => {
+const LikeButton = ({ item, type }: LikeButtonProps) => {
 	const [isFavorite, setIsFavorite] = useState(false)
 	const user = auth.currentUser
 
@@ -31,14 +33,15 @@ const LikeButton = ({ id, type }: LikeButtonProps) => {
 
 				const isFavorite =
 					type === 'movie'
-						? data?.movies?.includes(id)
-						: data?.tvShows?.includes(id)
+						? data?.movies?.some((movie: IMovie) => movie.id === item.id)
+						: data?.tvShows?.some((tvShow: ITVShow) => tvShow.id === item.id)
+
 				setIsFavorite(isFavorite)
 			}
 		}
 
 		checkFavorite()
-	}, [user, id, type])
+	}, [user, item, type])
 
 	const toggleFavorite = async () => {
 		if (!user) {
@@ -49,15 +52,15 @@ const LikeButton = ({ id, type }: LikeButtonProps) => {
 		try {
 			if (type === 'movie') {
 				if (isFavorite) {
-					await removeMovieFromFavorites(id)
+					await removeMovieFromFavorites(item as IMovie)
 				} else {
-					await addMovieToFavorites(id)
+					await addMovieToFavorites(item as IMovie)
 				}
 			} else {
 				if (isFavorite) {
-					await removeTvShowFromFavorites(id)
+					await removeTvShowFromFavorites(item as ITVShow)
 				} else {
-					await addTvShowToFavorites(id)
+					await addTvShowToFavorites(item as ITVShow)
 				}
 			}
 			setIsFavorite(!isFavorite)
@@ -71,7 +74,7 @@ const LikeButton = ({ id, type }: LikeButtonProps) => {
 			<FaHeart
 				size={40}
 				fill={isFavorite ? 'red' : 'gray'}
-				className='transition-all duration-500 hover:fill-red-600 active:scale-90'
+				className='transition-colors duration-500 hover:fill-red-600 active:scale-90'
 			/>
 		</button>
 	)

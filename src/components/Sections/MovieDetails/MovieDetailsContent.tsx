@@ -3,6 +3,7 @@ import { FC } from 'react'
 
 import { ICountry, IGenre } from '@/app/movies/[id]/page'
 import LikeButton from '@/components/LikeButton'
+import { IMovie } from '@/components/Sliders/HeroSlider'
 import getImageUrl from '@/utils/getImageUrl'
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 	release_date: string
 	production_countries: ICountry[]
 	genres: IGenre[]
+	vote_average: number
 }
 
 const MovieDetailsContent: FC<Props> = ({
@@ -25,6 +27,7 @@ const MovieDetailsContent: FC<Props> = ({
 	release_date,
 	production_countries,
 	genres,
+	vote_average,
 }) => {
 	return (
 		<div className='mb-20 flex items-start justify-between'>
@@ -59,7 +62,10 @@ const MovieDetailsContent: FC<Props> = ({
 							</ul>
 						</div>
 					)}
-					<LikeButton id={String(id)} type='movie' />
+					<LikeButton
+						item={{ id, title, poster_path, vote_average } as IMovie}
+						type='movie'
+					/>
 				</div>
 			</div>
 		</div>
