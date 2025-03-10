@@ -15,7 +15,7 @@ const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 const AllTVShows: FC = () => {
 	const [page, setPage] = useState(1)
 	const scrollRef = useRef<HTMLElement | null>(null)
-	const { value } = useSelector((state: RootState) => state.tv)
+	const value = useSelector((state: RootState) => state.media.tv)
 
 	const {
 		data: shows,

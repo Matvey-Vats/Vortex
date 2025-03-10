@@ -2,14 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from './api/apiSlice'
 import auth from './slices/authSlice'
 import genres from './slices/genresSlice'
-import movies from './slices/moviesSlice'
+import media from './slices/mediaSlice'
 import search from './slices/searchSlice'
-import tv from './slices/tvSlice'
 
 export const store = configureStore({
 	reducer: {
-		tv,
-		movies,
+		// tv,
+		// movies,
+		media,
 		genres,
 		search,
 		auth,

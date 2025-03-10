@@ -1,5 +1,4 @@
-import { setMovieSort } from '@/store/slices/moviesSlice'
-import { IValue, setValue } from '@/store/slices/tvSlice'
+import { IValue, setMovie, setTV } from '@/store/slices/mediaSlice'
 import { AppDispatch, RootState } from '@/store/store'
 import { FC, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,8 +23,8 @@ type Props = {
 const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 	const sortRef = useRef<HTMLDivElement | null>(null)
 	const [isOpen, setIsOpen] = useState(false)
-	const { value } = useSelector((state: RootState) => state.tv)
-	const { movieSortValue } = useSelector((state: RootState) => state.movies)
+	const tvValue = useSelector((state: RootState) => state.media.tv)
+	const movieValue = useSelector((state: RootState) => state.media.movie)
 
 	const dispatch = useDispatch<AppDispatch>()
 
@@ -42,12 +41,12 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 	}, [isOpen])
 
 	const onClickSortTV = (obj: IValue) => {
-		dispatch(setValue(obj))
+		dispatch(setTV(obj))
 		setIsOpen(false)
 	}
 
 	const onClickSortMovie = (obj: IValue) => {
-		dispatch(setMovieSort(obj))
+		dispatch(setMovie(obj))
 		setIsOpen(false)
 	}
 
@@ -58,8 +57,8 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 				className='cursor-pointer px-4 py-2 bg-gray-800 text-white rounded-md border border-gray-700 hover:bg-gray-700 transition'
 			>
 				<p>
-					{isForTV && value.value}
-					{isForMovie && movieSortValue.value}
+					{isForTV && tvValue.value}
+					{isForMovie && movieValue.value}
 				</p>
 			</div>
 			<div

@@ -15,13 +15,13 @@ const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
 const AllMovies: FC = () => {
 	const [page, setPage] = useState(1)
-	const { movieSortValue } = useSelector((state: RootState) => state.movies)
+	const value = useSelector((state: RootState) => state.media.movie)
 	const {
 		data: movies,
 		isLoading,
 		isError,
 	} = useGetMoviesByPropertyQuery(
-		{ property: movieSortValue.property, page },
+		{ property: value.property, page },
 		{
 			selectFromResult: ({ data, isLoading, isError }) => ({
 				data: data || [],
