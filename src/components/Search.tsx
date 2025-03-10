@@ -18,13 +18,13 @@ const Search: FC = () => {
 	}
 
 	return (
-		<div className='flex flex-row gap-x-5'>
+		<div className='flex flex-row gap-x-5 max-w-[450px] w-full'>
 			<input
 				value={value}
 				onChange={e => setValue(e.target.value)}
 				type='text'
 				placeholder='Search...'
-				className='border-b-1 border-b-[#FF3B3B] p-2 w-[300px] text-white outline-none'
+				className='border-b-1 border-b-[#FF3B3B] p-2 w-full text-white outline-none'
 			/>
 			<button
 				onClick={handleSearchClick}

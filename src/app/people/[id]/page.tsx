@@ -22,7 +22,7 @@ const PersonDetails = () => {
 					</p>
 				)}
 				{isSuccess && (
-					<div className='flex items-start justify-between'>
+					<div className='flex items-start gap-y-5 justify-between max-[1200px]:flex-col max-[1200px]:items-center'>
 						<Image
 							src={getImageUrl(data.profile_path)}
 							alt={data.name}
@@ -32,8 +32,8 @@ const PersonDetails = () => {
 							className='rounded-md'
 							priority
 						/>
-						<div className='w-[600px]'>
-							<div className='flex justify-between items-center mb-5'>
+						<div className='max-w-[600px]'>
+							<div className='flex gap-2 flex-wrap justify-between items-center mb-5'>
 								<h3 className='text-4xl font-bold'>{data.name}</h3>
 								<p className='mt-5 font-bold'>Born: {data.birthday}</p>
 							</div>

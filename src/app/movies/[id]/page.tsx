@@ -6,7 +6,6 @@ import MovieDetailsContent from '@/components/Sections/MovieDetails/MovieDetails
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import VideoPlayer from '@/components/VideoPlayer'
-import { addMovieToFavorites } from '@/favoritesService'
 import {
 	useGetByTypeAndIdQuery,
 	useGetSimilarByIdQuery,
@@ -72,10 +71,6 @@ const MovieDetails = () => {
 	const video = videos?.results.find((item: IVideo) =>
 		item.name.includes('Trailer')
 	)
-
-	const handleLikeClick = async (movieId: string) => {
-		await addMovieToFavorites(movieId)
-	}
 
 	return (
 		<div>

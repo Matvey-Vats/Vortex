@@ -84,10 +84,12 @@ const SearchPage = () => {
 	return (
 		<div ref={scrollRef} className='my-10'>
 			<div className='container'>
-				<h2 className={`${orbitron.className} font-bold text-4xl mb-5`}>
+				<h2
+					className={`${orbitron.className} font-bold text-4xl mb-5 max-[550px]:text-3xl`}
+				>
 					Search page
 				</h2>
-				<div className='flex items-center justify-between'>
+				<div className='flex gap-3 flex-wrap items-center justify-between'>
 					<Search />
 					<Filter setPage={setPage} />
 				</div>
@@ -107,7 +109,7 @@ const SearchPage = () => {
 				<DataStatus isLoading={isLoading} isError={isError} />
 
 				{displayedResults.results.length > 0 ? (
-					<div className='my-10 grid grid-cols-3 gap-10'>
+					<div className='my-10 grid grid-cols-3 gap-5 max-[1070px]:grid-cols-2 max-[730px]:grid-cols-1'>
 						{displayedResults.results.map((item: IMovie | ITVShow) => {
 							if (type === 'movie') {
 								return <MovieCard key={item.id} {...(item as IMovie)} />

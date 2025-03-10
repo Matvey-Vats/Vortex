@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
-import LikeButton from '../LikeButton'
 
 export interface IMovie {
 	id: number
@@ -49,20 +48,20 @@ const HeroSlider = ({ items }: Props) => {
 							priority
 						/>
 						<div className='absolute inset-0 bg-black opacity-50' />
-						<div className='absolute bottom-30 left-30 text-white'>
-							<h2 className='text-8xl font-bold'>{item.title}</h2>
+						<div className='absolute bottom-[10%] left-[10%] text-white'>
+							<h2 className='text-8xl font-bold max-[930px]:text-6xl max-[550px]:text-4xl'>
+								{item.title}
+							</h2>
 							<p className='text-xl mt-2'>
 								Rating: {item.vote_average.toFixed(1)}
 							</p>
-							<div className='flex items-center justify-between'>
-								<Link
-									href={`/movies/${item.id}`}
-									className='mt-4 inline-block px-6 py-2 bg-[#FF3B3B] cursor-pointer text-white font-bold rounded hover:bg-[#ff8e8e] transition duration-600'
-								>
-									Watch Now
-								</Link>
-								<LikeButton item={item} type='movie' />
-							</div>
+
+							<Link
+								href={`/movies/${item.id}`}
+								className='mt-4 inline-block px-6 py-2 bg-[#FF3B3B] cursor-pointer text-white font-bold rounded hover:bg-[#ff8e8e] transition duration-600'
+							>
+								Watch Now
+							</Link>
 						</div>
 					</div>
 				))}

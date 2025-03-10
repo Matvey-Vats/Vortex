@@ -63,7 +63,7 @@ const TVDetailsContent: FC<Props> = ({
 	return (
 		<>
 			<div
-				className={`${roboto.className} mb-20 flex items-start justify-between`}
+				className={`${roboto.className} mb-20 flex items-start gap-5 justify-between max-[1170px]:flex-col max-[1170px]:items-center`}
 			>
 				<Image
 					src={getImageUrl(poster_path)}
@@ -74,7 +74,7 @@ const TVDetailsContent: FC<Props> = ({
 					className='rounded-md'
 					priority
 				/>
-				<div className='w-[600px]'>
+				<div className='max-w-[600px]'>
 					<div className='mb-5'>
 						<div className='flex justify-between items-center'>
 							<h3 className='text-4xl font-bold'>{name}</h3>
@@ -112,7 +112,7 @@ const TVDetailsContent: FC<Props> = ({
 				</h3>
 				<div>
 					{last_episode_to_air && (
-						<div className='flex items-start justify-between border-b-2 border-[#333] pb-10 mb-10'>
+						<div className='flex items-start gap-5 justify-between border-b-2 border-[#333] pb-10 mb-10 max-[850px]:flex-col max-[850px]:items-center'>
 							<div className='max-w-[600px]'>
 								<h4 className='font-bold text-2xl mb-4'>
 									{last_episode_to_air.name}
@@ -150,7 +150,7 @@ const TVDetailsContent: FC<Props> = ({
 						</div>
 					)}
 					{next_episode_to_air && (
-						<div className='flex items-start justify-between border-b-2 border-[#333] pb-10'>
+						<div className='flex items-start gap-5 justify-between border-b-2 border-[#333] pb-10 max-[850px]:flex-col max-[850px]:items-center'>
 							<div className='max-w-[600px]'>
 								<h4 className='font-bold text-2xl mb-4'>
 									{next_episode_to_air.name}
@@ -195,7 +195,7 @@ const TVDetailsContent: FC<Props> = ({
 							{seasons.map((season: ISeason) => (
 								<div
 									key={season.id}
-									className='flex items-start justify-between border-b-2 border-[#333] pb-10 mb-10'
+									className='flex items-start gap-5 justify-between border-b-2 border-[#333] pb-10 mb-10 max-[720px]:flex-col max-[720px]:justify-center max-[720px]:items-center'
 								>
 									<div className='max-w-[600px]'>
 										<h4 className='font-bold text-2xl mb-4'>{season.name}</h4>

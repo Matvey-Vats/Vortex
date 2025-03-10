@@ -37,15 +37,7 @@ const SliderTemplate = <T,>({
 				},
 			},
 			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2,
-					initialSlide: 2,
-				},
-			},
-			{
-				breakpoint: 480,
+				breakpoint: 680,
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
@@ -59,7 +51,7 @@ const SliderTemplate = <T,>({
 			<Slider {...settings}>
 				{items.map(item => (
 					<Link
-						href={type ? `${type}/${(item as any).id}` : '/'}
+						href={type ? `/${type}/${(item as any).id}` : '/'}
 						key={(item as any).id}
 						className='px-2 cursor-pointer'
 					>

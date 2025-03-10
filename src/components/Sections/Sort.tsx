@@ -63,7 +63,7 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 				</p>
 			</div>
 			<div
-				className={`absolute z-50 left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-md shadow-lg transition-all duration-200 ${
+				className={`absolute z-50 right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-md shadow-lg transition-all duration-200 ${
 					isOpen
 						? 'opacity-100 scale-100 visible'
 						: 'opacity-0 scale-95 invisible'

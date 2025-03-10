@@ -30,7 +30,7 @@ const MovieDetailsContent: FC<Props> = ({
 	vote_average,
 }) => {
 	return (
-		<div className='mb-20 flex items-start justify-between'>
+		<div className='mb-20 gap-5 flex items-start justify-between max-[1170px]:flex-col max-[1170px]:items-center'>
 			<Image
 				src={getImageUrl(poster_path)}
 				alt={title}
@@ -40,8 +40,8 @@ const MovieDetailsContent: FC<Props> = ({
 				className='rounded-md'
 				priority
 			/>
-			<div className='w-[600px]'>
-				<div className='flex justify-between items-center mb-5'>
+			<div className='max-w-[600px]'>
+				<div className='flex justify-between gap-2 flex-wrap items-center mb-5'>
 					<h3 className='text-4xl font-bold'>{title}</h3>
 					<p className='text-2xl font-medium'>{runtime} mins.</p>
 				</div>

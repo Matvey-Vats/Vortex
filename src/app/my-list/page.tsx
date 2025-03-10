@@ -66,7 +66,7 @@ const MyList = () => {
 								>
 									Favorites Movies
 								</h3>
-								<div className='grid grid-cols-3'>
+								<div className='grid grid-cols-3 gap-5 max-[900px]:grid-cols-2 max-[640px]:grid-cols-1'>
 									{movies.map((movie: IMovie) => (
 										<MovieCard key={movie.id} {...movie} />
 									))}
@@ -80,7 +80,7 @@ const MyList = () => {
 								>
 									Favorites TV Shows
 								</h3>
-								<div className='grid grid-cols-3'>
+								<div className='grid grid-cols-3 gap-5 max-[900px]:grid-cols-2 max-[640px]:grid-cols-1'>
 									{tvShows.map((tvShow: ITVShow) => (
 										<TVCard key={tvShow.id} {...tvShow} />
 									))}

@@ -58,7 +58,7 @@ const Filter: FC<Props> = ({ setPage }) => {
 	return (
 		<div className='relative inline-block text-left'>
 			<button
-				onClick={() => setIsOpen(prev => !prev)}
+				onClick={() => setIsOpen(!isOpen)}
 				className='flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg border border-gray-700 hover:bg-gray-800 transition-all duration-300 shadow-md'
 			>
 				<p className='text-sm font-medium'>
@@ -86,11 +86,11 @@ const Filter: FC<Props> = ({ setPage }) => {
 			</div>
 			<div
 				ref={sortRef}
-				className={`absolute z-50 right-0 mt-2 w-[500px] bg-gray-900 border border-gray-700 rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${
+				className={`absolute z-40 mt-2 w-[400px] bg-gray-900 border border-gray-700 rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${
 					isOpen
 						? 'opacity-100 scale-100 visible'
 						: 'opacity-0 scale-95 invisible'
-				}`}
+				} min-[767px]:right-0`}
 			>
 				<div className='grid grid-cols-2 gap-4 p-4 text-gray-300'>
 					{/* By Type */}

@@ -47,7 +47,7 @@ const AllMovies: FC = () => {
 				<DataStatus isLoading={isLoading} isError={isError} />
 
 				{movies && movies?.results?.length > 0 ? (
-					<div className='grid grid-cols-3 gap-10'>
+					<div className='grid grid-cols-3 gap-5 max-[1070px]:grid-cols-2 max-[730px]:grid-cols-1'>
 						{movies?.results?.map((item: IMovie) => (
 							<MovieCard key={item.id} {...item} />
 						))}

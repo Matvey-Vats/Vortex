@@ -26,9 +26,9 @@ const TVBanner: FC<Props> = ({
 				priority
 			/>
 			<div className='absolute inset-0 bg-black opacity-50' />
-			<div className='absolute bottom-30 left-30 text-white'>
-				<h2 className='text-8xl font-bold'>{name}</h2>
-				<p className='text-xl'>{tagline}</p>
+			<div className='absolute bottom-[10%] left-[10%] text-white'>
+				<h2 className='text-8xl font-bold max-[660px]:text-5xl'>{name}</h2>
+				<p className='text-xl max-[660px]:text-md'>{tagline}</p>
 				<p className='text-xl mt-4 font-bold'>
 					Rating: {vote_average.toFixed(1)}
 				</p>

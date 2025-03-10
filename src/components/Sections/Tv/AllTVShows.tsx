@@ -46,7 +46,9 @@ const AllTVShows: FC = () => {
 		<section ref={scrollRef} className='mt-20 mb-10'>
 			<div className='container'>
 				<div className='flex items-center justify-between'>
-					<h2 className={`${orbitron.className} font-bold text-4xl mb-5`}>
+					<h2
+						className={`${orbitron.className} font-bold text-4xl mb-5 max-[550px]:text-3xl`}
+					>
 						TV Shows
 					</h2>
 					<Sort isForTV={true} />
@@ -54,7 +56,7 @@ const AllTVShows: FC = () => {
 
 				<DataStatus isLoading={isLoading} isError={isError} />
 
-				<div className='grid grid-cols-3 gap-10'>
+				<div className='grid grid-cols-3 gap-5 max-[1070px]:grid-cols-2 max-[730px]:grid-cols-1'>
 					{shows?.results?.map((item: ITVShow) => (
 						<TVCard key={item.id} {...item} />
 					))}
