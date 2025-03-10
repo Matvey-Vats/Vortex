@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import ReactPlayer from 'react-player'
 
 const VideoPlayer = ({ videoKey }: { videoKey: string }) => {
@@ -10,4 +11,4 @@ const VideoPlayer = ({ videoKey }: { videoKey: string }) => {
 	)
 }
 
-export default VideoPlayer
+export default memo(VideoPlayer)

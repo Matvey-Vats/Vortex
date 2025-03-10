@@ -3,7 +3,7 @@ import Pagination from '@/components/Pagination'
 import { useGetShowsByPropertyQuery } from '@/store/api/apiSlice'
 import { RootState } from '@/store/store'
 import { Orbitron } from 'next/font/google'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import DataStatus from '../DataStatus'
 import { ITVShow } from '../Home/TVShows/TopRatedTV'
@@ -39,8 +39,11 @@ const AllTVShows: FC = () => {
 		})
 	}, [page])
 
-	const handleNextPage = () => setPage(prev => prev + 1)
-	const handlePrevPage = () => setPage(prev => Math.max(prev - 1, 1))
+	const handleNextPage = useCallback(() => setPage(prev => prev + 1), [])
+	const handlePrevPage = useCallback(
+		() => setPage(prev => Math.max(prev - 1, 1)),
+		[]
+	)
 
 	return (
 		<section ref={scrollRef} className='mt-20 mb-10'>

@@ -40,13 +40,8 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 		return () => document.body.removeEventListener('click', handleClickOutside)
 	}, [isOpen])
 
-	const onClickSortTV = (obj: IValue) => {
-		dispatch(setTV(obj))
-		setIsOpen(false)
-	}
-
-	const onClickSortMovie = (obj: IValue) => {
-		dispatch(setMovie(obj))
+	const handleSort = (obj: IValue) => {
+		dispatch(isForTV ? setTV(obj) : setMovie(obj))
 		setIsOpen(false)
 	}
 
@@ -73,7 +68,7 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 						tvTypeList.map(obj => (
 							<li
 								key={obj.id}
-								onClick={() => onClickSortTV(obj)}
+								onClick={() => handleSort(obj)}
 								className={'px-4 py-2 hover:bg-gray-700 cursor-pointer'}
 							>
 								{obj.value}
@@ -83,7 +78,7 @@ const Sort: FC<Props> = ({ isForMovie, isForTV }) => {
 						movieTypeList.map(obj => (
 							<li
 								key={obj.id}
-								onClick={() => onClickSortMovie(obj)}
+								onClick={() => handleSort(obj)}
 								className={'px-4 py-2 hover:bg-gray-700 cursor-pointer'}
 							>
 								{obj.value}

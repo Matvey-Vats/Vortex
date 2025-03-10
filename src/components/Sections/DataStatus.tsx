@@ -7,31 +7,21 @@ type Props = {
 }
 
 const DataStatus: FC<Props> = ({ isLoading, isError }) => {
-	if (isLoading) {
-		return (
-			<div className='container'>
-				<div className='flex items-center justify-between'>
-					{Array.from({ length: 3 }).map((_, index) => (
-						<div key={index}>
-							<SliderLoader />
-						</div>
-					))}
-				</div>
-			</div>
-		)
-	}
+	if (!isLoading && !isError) return null
 
-	if (isError) {
-		return (
-			<div className='container'>
-				<p className='text-red-500 text-3xl font-semibold text-center'>
+	return (
+		<div className='container flex items-center justify-between'>
+			{isLoading ? (
+				Array.from({ length: 3 }).map((_, index) => (
+					<SliderLoader key={index} />
+				))
+			) : (
+				<p className='text-red-500 text-3xl font-semibold text-center w-full'>
 					Error, failed to retrieve data
 				</p>
-			</div>
-		)
-	}
-
-	return null
+			)}
+		</div>
+	)
 }
 
 export default DataStatus

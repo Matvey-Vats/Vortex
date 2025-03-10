@@ -5,12 +5,12 @@ import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import { useGetTopRatedQuery } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
-import { FC, useEffect, useState } from 'react'
+import { FC, memo, useMemo } from 'react'
 import DataStatus from '../../DataStatus'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
-const TopRatedMovies: FC = () => {
+const TopRatedMovies: FC = memo(() => {
 	const { data, isLoading, isError, isSuccess } = useGetTopRatedQuery(
 		{
 			type: 'movie',
@@ -25,12 +25,9 @@ const TopRatedMovies: FC = () => {
 			}),
 		}
 	)
-	const [movies, setMovies] = useState([])
 
-	useEffect(() => {
-		if (data) {
-			setMovies(data)
-		}
+	const movies = useMemo(() => {
+		return data || []
 	}, [data])
 
 	return (
@@ -60,6 +57,6 @@ const TopRatedMovies: FC = () => {
 			</div>
 		</section>
 	)
-}
+})
 
 export default TopRatedMovies

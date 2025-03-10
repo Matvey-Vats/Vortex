@@ -17,22 +17,17 @@ const Header: FC = () => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
-		const savedUser = localStorage.getItem('user')
-
-		if (savedUser) {
-			const user = JSON.parse(savedUser)
-			dispatch(setUser(user))
+		if (!isAuthenticated) {
+			const savedUser = localStorage.getItem('user')
+			if (savedUser) {
+				dispatch(setUser(JSON.parse(savedUser)))
+			}
 		}
-	}, [dispatch])
+	}, [dispatch, isAuthenticated])
 
 	const handleMenuClick = () => {
-		setIsOpen(!isOpen)
-
-		if (!isOpen) {
-			document.body.classList.add('overflow-hidden')
-		} else {
-			document.body.classList.remove('overflow-hidden')
-		}
+		setIsOpen(prev => !prev)
+		document.body.classList.toggle('overflow-hidden')
 	}
 
 	return (
@@ -51,7 +46,9 @@ const Header: FC = () => {
 					>
 						<ul className='flex items-center gap-x-5'>
 							<li className='transition-all duration-300 hover:opacity-70'>
-								<Link href={'/'}>Home</Link>
+								<Link href={'/'} passHref>
+									Home
+								</Link>
 							</li>
 							<li className='transition-all duration-300 hover:opacity-70'>
 								<Link href={'/tv'}>TV Shows</Link>

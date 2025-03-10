@@ -5,7 +5,7 @@ import { IMovie } from '@/components/Sliders/HeroSlider'
 import { useGetMoviesByPropertyQuery } from '@/store/api/apiSlice'
 import { RootState } from '@/store/store'
 import { Orbitron } from 'next/font/google'
-import { FC, useState } from 'react'
+import { FC, useCallback, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import DataStatus from '../DataStatus'
 import Sort from '../Sort'
@@ -24,15 +24,21 @@ const AllMovies: FC = () => {
 		{ property: value.property, page },
 		{
 			selectFromResult: ({ data, isLoading, isError }) => ({
-				data: data || [],
+				data: data?.results || [],
 				isLoading,
 				isError,
 			}),
 		}
 	)
 
-	const handleNextPage = () => setPage(prev => prev + 1)
-	const handlePrevPage = () => setPage(prev => Math.max(prev - 1, 1))
+	const handleNextPage = useCallback(() => setPage(prev => prev + 1), [])
+	const handlePrevPage = useCallback(
+		() => setPage(prev => Math.max(prev - 1, 1)),
+		[]
+	)
+
+	const hasMovies = useMemo(() => movies.length > 0, [movies])
+	const totalPages = useMemo(() => movies?.total_pages || 1, [movies])
 
 	return (
 		<section className='mt-20 mb-10'>
@@ -46,9 +52,9 @@ const AllMovies: FC = () => {
 
 				<DataStatus isLoading={isLoading} isError={isError} />
 
-				{movies && movies?.results?.length > 0 ? (
+				{hasMovies ? (
 					<div className='grid grid-cols-3 gap-5 max-[1070px]:grid-cols-2 max-[730px]:grid-cols-1'>
-						{movies?.results?.map((item: IMovie) => (
+						{movies.map((item: IMovie) => (
 							<MovieCard key={item.id} {...item} />
 						))}
 					</div>
@@ -59,10 +65,10 @@ const AllMovies: FC = () => {
 				)}
 			</div>
 
-			{movies && movies.total_pages > 1 && (
+			{totalPages > 1 && (
 				<Pagination
 					page={page}
-					totalPages={movies.total_pages}
+					totalPages={totalPages}
 					handleNextPage={handleNextPage}
 					handlePrevPage={handlePrevPage}
 				/>

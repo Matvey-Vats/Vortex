@@ -4,7 +4,7 @@ import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import { useGetPeoplePopularQuery } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
-import { FC } from 'react'
+import { FC, memo, useCallback } from 'react'
 import DataStatus from '../../DataStatus'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
@@ -15,7 +15,7 @@ export interface IPeople {
 	profile_path: string
 }
 
-const PopularPeopleList: FC = () => {
+const PopularPeopleList: FC = memo(() => {
 	const {
 		data: people,
 		isLoading,
@@ -29,6 +29,11 @@ const PopularPeopleList: FC = () => {
 			isSuccess,
 		}),
 	})
+
+	const getImage = useCallback(
+		(item: IPeople) => getImageUrl(item.profile_path),
+		[]
+	)
 	return (
 		<section className='my-10'>
 			<div className='container'>
@@ -41,7 +46,7 @@ const PopularPeopleList: FC = () => {
 						<SliderTemplate
 							items={people || []}
 							type='people'
-							getImage={(item: IPeople) => getImageUrl(item.profile_path)}
+							getImage={getImage}
 							renderContent={item => (
 								<div>
 									<div className='p-2 rounded-md'>
@@ -55,6 +60,6 @@ const PopularPeopleList: FC = () => {
 			</div>
 		</section>
 	)
-}
+})
 
 export default PopularPeopleList

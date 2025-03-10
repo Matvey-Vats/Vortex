@@ -5,12 +5,12 @@ import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import { useGetMovieListQuery } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
-import { FC, useEffect, useState } from 'react'
+import { FC, memo, useMemo } from 'react'
 import DataStatus from '../../DataStatus'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
-const MovieList: FC = () => {
+const MovieList: FC = memo(() => {
 	const {
 		data: movies,
 		isLoading,
@@ -24,12 +24,9 @@ const MovieList: FC = () => {
 			isSuccess,
 		}),
 	})
-	const [moviess, setMovies] = useState([])
 
-	useEffect(() => {
-		if (movies) {
-			setMovies(movies)
-		}
+	const moviess = useMemo(() => {
+		return movies || []
 	}, [movies])
 
 	return (
@@ -59,6 +56,6 @@ const MovieList: FC = () => {
 			</div>
 		</section>
 	)
-}
+})
 
 export default MovieList

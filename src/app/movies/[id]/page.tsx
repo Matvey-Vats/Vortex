@@ -5,13 +5,14 @@ import MovieBanner from '@/components/Sections/MovieDetails/MovieBanner'
 import MovieDetailsContent from '@/components/Sections/MovieDetails/MovieDetailsContent'
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import VideoPlayer from '@/components/VideoPlayer'
+import Spinner from '@/components/Spinner'
 import {
 	useGetByTypeAndIdQuery,
 	useGetSimilarByIdQuery,
 	useGetVideosByIdQuery,
 } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
+import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
 
 export interface IGenre {
@@ -43,6 +44,11 @@ interface IVideo {
 	key: string
 	name: string
 }
+
+const VideoPlayer = dynamic(() => import('../../../components/VideoPlayer'), {
+	loading: () => <Spinner />,
+	ssr: false,
+})
 
 const MovieDetails = () => {
 	const { id } = useParams()

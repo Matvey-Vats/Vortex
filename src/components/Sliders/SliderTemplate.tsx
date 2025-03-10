@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { memo } from 'react'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
 
 type Props<T> = {
 	items: T[]
@@ -66,7 +64,6 @@ const SliderTemplate = <T,>({
 								priority
 							/>
 							<div className='absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg' />
-
 							{renderContent && (
 								<div className='absolute bottom-4 left-4 w-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
 									{renderContent(item)}
@@ -80,4 +77,4 @@ const SliderTemplate = <T,>({
 	)
 }
 
-export default SliderTemplate
+export default memo(SliderTemplate) as typeof SliderTemplate

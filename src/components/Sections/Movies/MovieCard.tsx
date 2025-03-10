@@ -1,7 +1,7 @@
 import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 type Props = {
 	id: number
@@ -21,7 +21,6 @@ const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 					objectFit='cover'
 					className='rounded-lg'
 					sizes='(max-width: 440px) 100vw, 1200px'
-					priority
 				/>
 				<div className='absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg' />
 
@@ -38,4 +37,4 @@ const MovieCard: FC<Props> = ({ id, title, vote_average, poster_path }) => {
 	)
 }
 
-export default MovieCard
+export default memo(MovieCard)

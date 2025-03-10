@@ -1,7 +1,7 @@
 import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 type Props = {
 	id: number
@@ -21,16 +21,13 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 					objectFit='cover'
 					className='rounded-lg'
 					sizes='(max-width: 440px) 100vw, 1200px'
-					priority
 				/>
 				<div className='absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-lg' />
 
 				<div className='absolute bottom-4 left-4 w-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-					<div>
-						<div className='p-2 rounded-md'>
-							<h3 className='text-2xl font-semibold'>{name}</h3>
-							<p className='text-md'>⭐ {vote_average?.toFixed(1)}</p>
-						</div>
+					<div className='p-2 rounded-md'>
+						<h3 className='text-2xl font-semibold'>{name}</h3>
+						<p className='text-md'>⭐ {vote_average?.toFixed(1)}</p>
 					</div>
 				</div>
 			</div>
@@ -38,4 +35,4 @@ const TVCard: FC<Props> = ({ id, name, vote_average, poster_path }) => {
 	)
 }
 
-export default TVCard
+export default memo(TVCard)

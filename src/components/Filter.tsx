@@ -3,7 +3,7 @@ import { IGenre } from '@/app/movies/[id]/page'
 import { fetchGenres, setSelectedGenre } from '@/store/slices/genresSlice'
 import { setType } from '@/store/slices/searchSlice'
 import { AppDispatch, RootState } from '@/store/store'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { TiArrowSortedDown } from 'react-icons/ti'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -25,14 +25,16 @@ const Filter: FC<Props> = ({ setPage }) => {
 	)
 	const { type } = useSelector((state: RootState) => state.search)
 
-	const currentType = typesList.find(t => t.property === type)
-	const selectedType = currentType ? currentType.name : 'All'
+	const selectedType = useMemo(() => {
+		const currentType = typesList.find(t => t.property === type)
+		return currentType ? currentType.name : 'All'
+	}, [type])
 
 	useEffect(() => {
 		dispatch(fetchGenres())
 
 		if (sortRef.current) {
-			const handleClickOutside = (e: any) => {
+			const handleClickOutside = (e: MouseEvent) => {
 				if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
 					setIsOpen(false)
 				}
@@ -43,16 +45,18 @@ const Filter: FC<Props> = ({ setPage }) => {
 		}
 	}, [])
 
-	const handleGenreClick = (genre: IGenre) => {
-		dispatch(setSelectedGenre(genre))
+	const handleSelect = (callback: () => void) => {
+		callback()
 		setIsOpen(false)
 		setPage(1)
 	}
 
+	const handleGenreClick = (genre: IGenre) => {
+		handleSelect(() => dispatch(setSelectedGenre(genre)))
+	}
+
 	const handleTypeClick = (type: string) => {
-		dispatch(setType(type))
-		setIsOpen(false)
-		setPage(1)
+		handleSelect(() => dispatch(setType(type)))
 	}
 
 	return (

@@ -1,7 +1,8 @@
 'use client'
 import { useGetTVShowsListQuery } from '@/store/api/apiSlice'
+import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
-import { FC, useEffect, useState } from 'react'
+import { FC, useCallback } from 'react'
 import SliderTemplate from '../../../Sliders/SliderTemplate'
 import DataStatus from '../../DataStatus'
 import { ITVShow } from './TopRatedTV'
@@ -22,13 +23,11 @@ const TVList: FC = () => {
 			isSuccess,
 		}),
 	})
-	const [series, setSeries] = useState([])
 
-	useEffect(() => {
-		if (shows) {
-			setSeries(shows)
-		}
-	}, [shows])
+	const getImage = useCallback(
+		(item: ITVShow) => getImageUrl(item.poster_path),
+		[]
+	)
 
 	return (
 		<section>
@@ -41,10 +40,8 @@ const TVList: FC = () => {
 					<div>
 						<SliderTemplate
 							type='tv'
-							items={series || []}
-							getImage={item =>
-								`https://image.tmdb.org/t/p/original${item.poster_path}`
-							}
+							items={shows || []}
+							getImage={getImage}
 							renderContent={(item: ITVShow) => (
 								<div>
 									<div className='p-2 rounded-md'>

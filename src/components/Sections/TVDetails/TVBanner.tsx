@@ -1,6 +1,6 @@
 import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 type Props = {
 	name: string
@@ -37,4 +37,4 @@ const TVBanner: FC<Props> = ({
 	)
 }
 
-export default TVBanner
+export default memo(TVBanner)

@@ -2,18 +2,14 @@
 
 import Spinner from '@/components/Spinner'
 import { useGetMovieListQuery } from '@/store/api/apiSlice'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import HeroSlider from '../../Sliders/HeroSlider'
 
 const Hero = () => {
 	const { data, isLoading } = useGetMovieListQuery(1)
 
-	const [movies, setMovies] = useState([])
-
-	useEffect(() => {
-		if (data?.results) {
-			setMovies(data.results)
-		}
+	const movies = useMemo(() => {
+		return data?.results || []
 	}, [data])
 
 	if (isLoading) {
@@ -22,7 +18,7 @@ const Hero = () => {
 
 	return (
 		<div>
-			<HeroSlider items={movies || []} />
+			<HeroSlider items={movies} />
 		</div>
 	)
 }

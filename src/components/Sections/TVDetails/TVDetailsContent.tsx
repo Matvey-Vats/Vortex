@@ -3,7 +3,7 @@ import LikeButton from '@/components/LikeButton'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron, Roboto } from 'next/font/google'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { ITVShow } from '../Home/TVShows/TopRatedTV'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
@@ -228,4 +228,4 @@ const TVDetailsContent: FC<Props> = ({
 	)
 }
 
-export default TVDetailsContent
+export default memo(TVDetailsContent)

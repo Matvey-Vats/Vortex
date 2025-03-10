@@ -6,6 +6,7 @@ import {
 	removeTvShowFromFavorites,
 } from '@/favoritesService'
 import { auth, db } from '@/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
@@ -22,32 +23,36 @@ const LikeButton = ({ item, type }: LikeButtonProps) => {
 	const user = auth.currentUser
 
 	useEffect(() => {
-		if (!user) return
+		const unsubscribe = onAuthStateChanged(auth, currentUser => {
+			if (!currentUser) return
+			const checkFavorite = async () => {
+				const userFavoritesRef = doc(db, 'favorites', currentUser.uid)
+				const docSnap = await getDoc(userFavoritesRef)
 
-		const checkFavorite = async () => {
-			const userFavoritesRef = doc(db, 'favorites', user.uid)
-			const docSnap = await getDoc(userFavoritesRef)
+				if (docSnap.exists()) {
+					const data = docSnap.data()
+					const isFavorite =
+						type === 'movie'
+							? data?.movies?.some((movie: IMovie) => movie.id === item.id)
+							: data?.tvShows?.some((tvShow: ITVShow) => tvShow.id === item.id)
 
-			if (docSnap.exists()) {
-				const data = docSnap.data()
-
-				const isFavorite =
-					type === 'movie'
-						? data?.movies?.some((movie: IMovie) => movie.id === item.id)
-						: data?.tvShows?.some((tvShow: ITVShow) => tvShow.id === item.id)
-
-				setIsFavorite(isFavorite)
+					setIsFavorite(isFavorite)
+				}
 			}
-		}
 
-		checkFavorite()
-	}, [user, item, type])
+			checkFavorite()
+		})
+
+		return () => unsubscribe()
+	}, [item, type])
 
 	const toggleFavorite = async () => {
 		if (!user) {
 			alert('Please enter on your account')
 			return
 		}
+
+		setIsFavorite(prev => !prev)
 
 		try {
 			if (type === 'movie') {
@@ -63,9 +68,9 @@ const LikeButton = ({ item, type }: LikeButtonProps) => {
 					await addTvShowToFavorites(item as ITVShow)
 				}
 			}
-			setIsFavorite(!isFavorite)
 		} catch (error) {
-			console.error('Error of favorite update ', error)
+			console.error('Error updating favorite', error)
+			setIsFavorite(prev => !prev)
 		}
 	}
 

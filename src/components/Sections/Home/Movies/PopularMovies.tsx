@@ -4,14 +4,14 @@ import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import { useGetMoviesByPropertyQuery } from '@/store/api/apiSlice'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
-import { FC, useEffect, useState } from 'react'
+import { FC, memo } from 'react'
 import DataStatus from '../../DataStatus'
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
-const PopularMovies: FC = () => {
+const PopularMovies: FC = memo(() => {
 	const {
-		data: populars,
+		data: movies,
 		isLoading,
 		isError,
 		isSuccess,
@@ -26,13 +26,6 @@ const PopularMovies: FC = () => {
 			}),
 		}
 	)
-	const [movies, setMovies] = useState([])
-
-	useEffect(() => {
-		if (populars) {
-			setMovies(populars)
-		}
-	}, [populars])
 
 	return (
 		<section className='my-10'>
@@ -45,9 +38,9 @@ const PopularMovies: FC = () => {
 					<div>
 						<SliderTemplate
 							type='movies'
-							items={movies || []}
+							items={movies}
 							getImage={(item: IMovie) => getImageUrl(item.poster_path)}
-							renderContent={item => (
+							renderContent={(item: IMovie) => (
 								<div key={item.id}>
 									<div className='p-2 rounded-md'>
 										<h3 className='text-2xl font-semibold'>{item.title}</h3>
@@ -61,6 +54,6 @@ const PopularMovies: FC = () => {
 			</div>
 		</section>
 	)
-}
+})
 
 export default PopularMovies

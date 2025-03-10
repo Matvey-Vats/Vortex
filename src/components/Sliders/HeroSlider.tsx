@@ -1,5 +1,7 @@
+import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { memo } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
@@ -21,7 +23,7 @@ interface Props {
 	items: IMovie[]
 }
 
-const HeroSlider = ({ items }: Props) => {
+const HeroSlider = memo(({ items }: Props) => {
 	const settings = {
 		dots: true,
 		fade: true,
@@ -40,7 +42,7 @@ const HeroSlider = ({ items }: Props) => {
 				{items.map(item => (
 					<div key={item.id} className='relative w-full h-[800px]'>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+							src={getImageUrl(item.backdrop_path)}
 							alt={item.title}
 							fill
 							objectFit='cover'
@@ -68,6 +70,6 @@ const HeroSlider = ({ items }: Props) => {
 			</Slider>
 		</div>
 	)
-}
+})
 
 export default HeroSlider
