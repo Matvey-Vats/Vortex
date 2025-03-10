@@ -56,3 +56,25 @@ npm run dev
 yarn dev
 ```
 The app will be available at `http://localhost:3000` 🚀  
+
+5️⃣ **Screenshots**
+
+![image](https://github.com/user-attachments/assets/cf26f134-08ca-45a9-a0fe-9d27ac458304)
+
+![image](https://github.com/user-attachments/assets/8ef07cbb-bd99-49f2-8f66-9924cda166bf)
+
+**Details Page**
+![image](https://github.com/user-attachments/assets/e4f5d63a-686d-4a05-a763-3d1f561ee6f2)
+![image](https://github.com/user-attachments/assets/78aad74a-c2b5-4fa3-9dad-2249588cc972)
+![image](https://github.com/user-attachments/assets/df2fc780-c68e-47d5-82c1-23ff4771ea70)
+![image](https://github.com/user-attachments/assets/43fb30fa-9f3e-440d-92a0-2d526c009c8e)
+
+**Movies**
+![image](https://github.com/user-attachments/assets/a52f4111-f3d0-473f-ae4a-fe9a7d34e822)
+
+**Search** 
+![image](https://github.com/user-attachments/assets/038e8ff1-e424-438f-b466-8e209222cfbb)
+
+
+**Auth**
+![image](https://github.com/user-attachments/assets/8a25af32-e010-4768-ad99-a0679facdb15)
