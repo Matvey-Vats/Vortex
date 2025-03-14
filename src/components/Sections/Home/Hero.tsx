@@ -1,7 +1,7 @@
 'use client'
 
 import Spinner from '@/components/Spinner'
-import { useGetMovieListQuery } from '@/store/api/apiSlice'
+import { useGetMovieListQuery } from '@/store/api/moviesApi'
 import { useMemo } from 'react'
 import HeroSlider from '../../Sliders/HeroSlider'
 

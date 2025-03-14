@@ -4,10 +4,8 @@ import { ITVShow } from '@/components/Sections/Home/TVShows/TopRatedTV'
 import TVBanner from '@/components/Sections/TVDetails/TVBanner'
 import TVDetailsContent from '@/components/Sections/TVDetails/TVDetailsContent'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import {
-	useGetByTypeAndIdQuery,
-	useGetSimilarByIdQuery,
-} from '@/store/api/apiSlice'
+import { useGetByTypeAndIdQuery } from '@/store/api/commonApi'
+import { useGetSimilarShowsQuery } from '@/store/api/tvShowsApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { useParams } from 'next/navigation'
 
@@ -31,7 +29,7 @@ const TVShowDetails = () => {
 		data: similar,
 		isLoading: isSimilarLoading,
 		isError: isSimilarError,
-	} = useGetSimilarByIdQuery({ type: 'tv', id })
+	} = useGetSimilarShowsQuery(Number(id))
 
 	return (
 		<div>

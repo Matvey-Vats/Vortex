@@ -2,7 +2,7 @@
 
 import Pagination from '@/components/Pagination'
 import { IMovie } from '@/components/Sliders/HeroSlider'
-import { useGetMoviesByPropertyQuery } from '@/store/api/apiSlice'
+import { useGetMoviesByPropertyQuery } from '@/store/api/moviesApi'
 import { RootState } from '@/store/store'
 import { Orbitron } from 'next/font/google'
 import { FC, useCallback, useMemo, useState } from 'react'
@@ -24,7 +24,7 @@ const AllMovies: FC = () => {
 		{ property: value.property, page },
 		{
 			selectFromResult: ({ data, isLoading, isError }) => ({
-				data: data?.results || [],
+				data: data || [],
 				isLoading,
 				isError,
 			}),
@@ -37,7 +37,7 @@ const AllMovies: FC = () => {
 		[]
 	)
 
-	const hasMovies = useMemo(() => movies.length > 0, [movies])
+	const hasMovies = useMemo(() => movies?.results?.length > 0, [movies])
 	const totalPages = useMemo(() => movies?.total_pages || 1, [movies])
 
 	return (
@@ -54,7 +54,7 @@ const AllMovies: FC = () => {
 
 				{hasMovies ? (
 					<div className='grid grid-cols-3 gap-5 max-[1070px]:grid-cols-2 max-[730px]:grid-cols-1'>
-						{movies.map((item: IMovie) => (
+						{movies?.results.map((item: IMovie) => (
 							<MovieCard key={item.id} {...item} />
 						))}
 					</div>

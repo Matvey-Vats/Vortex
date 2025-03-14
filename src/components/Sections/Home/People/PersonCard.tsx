@@ -19,8 +19,6 @@ type Props = {
 }
 
 const PersonCard: FC<Props> = ({ id, profile_path, name }) => {
-	console.log('RENDERING PERSON CARD')
-
 	const imageUrl = getImageUrl(profile_path)
 
 	if (!imageUrl) return <div>Image not available</div>

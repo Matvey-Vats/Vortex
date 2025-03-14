@@ -1,7 +1,7 @@
 'use client'
 
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import { useGetPeoplePopularQuery } from '@/store/api/apiSlice'
+import { useGetPeoplePopularQuery } from '@/store/api/peopleApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, memo, useCallback } from 'react'

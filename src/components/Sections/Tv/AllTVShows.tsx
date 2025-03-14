@@ -1,6 +1,6 @@
 'use client'
 import Pagination from '@/components/Pagination'
-import { useGetShowsByPropertyQuery } from '@/store/api/apiSlice'
+import { useGetShowsByPropertyQuery } from '@/store/api/tvShowsApi'
 import { RootState } from '@/store/store'
 import { Orbitron } from 'next/font/google'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'

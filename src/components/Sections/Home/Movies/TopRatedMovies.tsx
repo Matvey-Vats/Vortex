@@ -2,7 +2,7 @@
 
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import { useGetTopRatedQuery } from '@/store/api/apiSlice'
+import { useGetTopRatedMoviesQuery } from '@/store/api/moviesApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, memo, useMemo } from 'react'
@@ -11,20 +11,14 @@ import DataStatus from '../../DataStatus'
 const orbitron = Orbitron({ subsets: ['latin'], weight: '700' })
 
 const TopRatedMovies: FC = memo(() => {
-	const { data, isLoading, isError, isSuccess } = useGetTopRatedQuery(
-		{
-			type: 'movie',
-			page: 1,
-		},
-		{
-			selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
-				data: data?.results || undefined,
-				isLoading,
-				isError,
-				isSuccess,
-			}),
-		}
-	)
+	const { data, isLoading, isError, isSuccess } = useGetTopRatedMoviesQuery(1, {
+		selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
+			data: data?.results || undefined,
+			isLoading,
+			isError,
+			isSuccess,
+		}),
+	})
 
 	const movies = useMemo(() => {
 		return data || []

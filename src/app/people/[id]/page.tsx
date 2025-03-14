@@ -1,6 +1,7 @@
 'use client'
 import Spinner from '@/components/Spinner'
-import { useGetByTypeAndIdQuery } from '@/store/api/apiSlice'
+
+import { useGetByTypeAndIdQuery } from '@/store/api/commonApi'
 import getImageUrl from '@/utils/getImageUrl'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'

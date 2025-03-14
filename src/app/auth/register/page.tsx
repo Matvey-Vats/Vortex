@@ -43,7 +43,7 @@ const SignUp = () => {
 	}
 
 	return (
-		<div className='mt-10'>
+		<div className='my-10'>
 			<div className='container'>
 				<div className='flex items-center justify-center mt-40'>
 					<div className='w-[600px]'>

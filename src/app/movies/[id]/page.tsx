@@ -6,11 +6,12 @@ import MovieDetailsContent from '@/components/Sections/MovieDetails/MovieDetails
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
 import Spinner from '@/components/Spinner'
+
+import { useGetByTypeAndIdQuery } from '@/store/api/commonApi'
 import {
-	useGetByTypeAndIdQuery,
-	useGetSimilarByIdQuery,
+	useGetSimilarMoviesQuery,
 	useGetVideosByIdQuery,
-} from '@/store/api/apiSlice'
+} from '@/store/api/moviesApi'
 import getImageUrl from '@/utils/getImageUrl'
 import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
@@ -70,9 +71,9 @@ const MovieDetails = () => {
 		data: similar,
 		isLoading: isSimilarLoading,
 		isError: isSimilarError,
-	} = useGetSimilarByIdQuery({ type: 'movie', id })
+	} = useGetSimilarMoviesQuery(Number(id))
 
-	const { data: videos } = useGetVideosByIdQuery(id)
+	const { data: videos } = useGetVideosByIdQuery(Number(id))
 
 	const video = videos?.results.find((item: IVideo) =>
 		item.name.includes('Trailer')

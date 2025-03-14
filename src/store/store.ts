@@ -1,5 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { apiSlice } from './api/apiSlice'
+import { baseApi } from './api/baseApi'
+import { commonApi } from './api/commonApi'
+import { moviesApi } from './api/moviesApi'
+import { peopleApi } from './api/peopleApi'
+import { tvShowsApi } from './api/tvShowsApi'
 import auth from './slices/authSlice'
 import genres from './slices/genresSlice'
 import media from './slices/mediaSlice'
@@ -13,11 +17,17 @@ export const store = configureStore({
 		genres,
 		search,
 		auth,
-		[apiSlice.reducerPath]: apiSlice.reducer,
+		[baseApi.reducerPath]: baseApi.reducer,
 	},
 
 	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware().concat(apiSlice.middleware),
+		getDefaultMiddleware().concat([
+			baseApi.middleware,
+			moviesApi.middleware,
+			tvShowsApi.middleware,
+			peopleApi.middleware,
+			commonApi.middleware,
+		]),
 })
 
 export type RootState = ReturnType<typeof store.getState>

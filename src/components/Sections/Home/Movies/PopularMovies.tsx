@@ -1,7 +1,7 @@
 'use client'
 import { IMovie } from '@/components/Sliders/HeroSlider'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import { useGetMoviesByPropertyQuery } from '@/store/api/apiSlice'
+import { useGetMoviesByPropertyQuery } from '@/store/api/moviesApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, memo } from 'react'

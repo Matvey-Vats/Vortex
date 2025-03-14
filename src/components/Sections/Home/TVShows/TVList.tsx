@@ -1,5 +1,5 @@
 'use client'
-import { useGetTVShowsListQuery } from '@/store/api/apiSlice'
+import { useGetTVShowsListQuery } from '@/store/api/tvShowsApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, useCallback } from 'react'

@@ -1,6 +1,6 @@
 'use client'
 import SliderTemplate from '@/components/Sliders/SliderTemplate'
-import { useGetTopRatedQuery } from '@/store/api/apiSlice'
+import { useGetTopRatedShowsQuery } from '@/store/api/tvShowsApi'
 import getImageUrl from '@/utils/getImageUrl'
 import { Orbitron } from 'next/font/google'
 import { FC, useCallback } from 'react'
@@ -23,17 +23,14 @@ const TopRatedTV: FC = () => {
 		isLoading,
 		isError,
 		isSuccess,
-	} = useGetTopRatedQuery(
-		{ type: 'tv', page: 1 },
-		{
-			selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
-				data: data?.results || undefined,
-				isLoading,
-				isError,
-				isSuccess,
-			}),
-		}
-	)
+	} = useGetTopRatedShowsQuery(1, {
+		selectFromResult: ({ data, isLoading, isError, isSuccess }) => ({
+			data: data?.results || undefined,
+			isLoading,
+			isError,
+			isSuccess,
+		}),
+	})
 
 	const getImage = useCallback(
 		(item: ITVShow) => getImageUrl(item.poster_path),

@@ -8,6 +8,6 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-	@apply max-w-[1400px] px-[15px] mx-auto;
-}
+	.container {
+		@apply max-w-[1400px] px-[15px] mx-auto;
+	}
